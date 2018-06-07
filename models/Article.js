@@ -6,31 +6,31 @@ var Schema = mongoose.Schema;
 var ArticleSchema = new Schema({
     // headline is the class name for the title of the article from scaped site, but value is plain text of <a> tag
     headline: {
-        type: string,
+        type: String,
         required: true,
         trrim: true
     },
 
     // blurb is the class name for the summary of the article from scraped site, but value is the plain text of the <div> tag with class='blurb'
     blurb: {
-        type: string,
+        type: String,
         required: true
     },
 
     // link actually comes before headline on the main page of scraped site, as the href property
     linkL: {
-        type: string,
+        type: String,
         required: true
     },
 
     // Author's byline and link to profile of the article from the scraped site, both from property and plain text of <a> tag
     author: {
         authName: {
-            type: string,
+            type: String,
             required: false
         },
         authLink: {
-            type: string,
+            type: String,
             required: false
         }
     },
