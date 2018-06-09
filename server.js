@@ -18,8 +18,20 @@ app.use(bodyParser.json());
 
 app.use(express.static("public"));
 
-app.engine("handlebars", exprHbrs({ defaultLayout: main }));
+app.engine("handlebars", exprHbrs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+app.get("/", function(req, res) {
+    res.redirect("/home");
+    // console.log("app.get('/'): res.get('url'): ", res.get(url));
+    // res.render("index");
+});
+
+app.get("/home", function(req, res) {
+    console.log(req.originalUrl);
+    // res.render("../views/layouts/main.handlebars");
+    res.render("index");
+});
 
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
@@ -31,7 +43,7 @@ mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
 app.get(/*".btn-scrape", function(req, res) {  )( */ "/scrape", function (req, res) {
-    ajax.get /*request*/("http://www.washingtonpost.com/").then(function(response) { //, function (error, response, html) {
+    $.ajax.get /*request*/("http://www.washingtonpost.com/").then(function(response) { //, function (error, response, html) {
         var $ = cheerio.load(/*html*/ response.data);
 
         $(this.attr("moat-id", (("homepage\/card") || ("homepager\/story")))).each(function (i, element) {
@@ -70,4 +82,8 @@ app.get("/saved-articles", function(res, req) {
 
 app.get("/saved-articles/:id", function(req, req) {
     db.Article.fin
+});
+
+app.listen(PORT, function() {
+    console.log("Currently listening at MONGODB_URI: " + MONGODB_URI);
 });
