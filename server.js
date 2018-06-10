@@ -43,11 +43,19 @@ mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
 app.get(/*".btn-scrape", function(req, res) {  )( */ "/scrape", function (req, res) {
-    $.ajax.get /*request*/("http://www.washingtonpost.com/").then(function(response) { //, function (error, response, html) {
-        var $ = cheerio.load(/*html*/ response.data);
+    console.log("app.get('/scrape' has been started");
 
-        $(this.attr("moat-id", (("homepage\/card") || ("homepager\/story")))).each(function (i, element) {
+    console.log("about to start the request for scraping the WashingtonPost");
+    /*$.*/ /*ajax.get /*request*/request("http://www.washingtonpost.com/", function(error, response, html) {//.then(function(response) { //, function (error, response, html) {
+        console.log("top level of the scrape request, at this point '$' is: " + $);
+        var $ = cheerio.load(html); // response.data);
+        console.log("after assingning '$' to cheerio.load(html), the value of '$' is: " + $);
+
+        $(("class", "moat-trackable") && ("moat-id", "homepage\*" /*/card"*/)).each(function(x, element) { //})
+        // $(this.attr("moat-id", ("homepage\/card") || ("homepager\/story"))).each(function (i, element) {
             var results = {};
+
+            // if ((results.at))
 
             // var title = $(element).children("a").text();
             // var link = $(element).children("a").attr("href");
