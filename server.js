@@ -384,10 +384,13 @@ app.get(/*".btn-scrape", function(req, res) {  )( */ "/scrape", function (req, r
 
         console.log("\here are the results: \n", results);
 
-        db.Article.create(results).then(function (dbArticle) {
+        // console.log("\the current value of dbArticle before article creation is: ", dbArticle);
+        db.Article.create(resultArray).then(function (dbArticle) {
+            console.log("\the current value of dbArticle after passing it the values of resultArray: \n", dbArticle);
             console.log(dbArticle);
         }).catch(function (err) {
             // /*return*/ res.json(err);
+            console.log("\nthe current err is: \n", err);
         });
         res.send("Scrape Completed Successfully");
     });
