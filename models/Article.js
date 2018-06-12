@@ -18,18 +18,18 @@ var ArticleSchema = new Schema({
     },
 
     // link actually comes before headline on the main page of scraped site, as the href property
-    linkL: {
+    link: {
         type: String,
         required: true
     },
 
     // Author's byline and link to profile of the article from the scraped site, both from property and plain text of <a> tag
     author: {
-        authName: {
+        authorName: {
             type: String,
             required: false
         },
-        authLink: {
+        authorLink: {
             type: String,
             required: false
         }
